@@ -11,6 +11,14 @@
 |
 */
 
+Route::resource('departamentos','DepartamentoController',['only' => ['index', 'show', 'store', 'destroy', 'update']]);
+Route::resource('visitantes','VisitanteController',['only' => ['index', 'show', 'store', 'destroy', 'update']]);
+Route::group(['prefix'=>'departamento'],function(){   
+Route::resource('cursos','CursoController',['only' => ['index', 'show', 'store', 'destroy', 'update']]);
+Route::get('cursos','CursoController@indexByDepartamento');});
+Route::resource('criterios','CriterioController',['only' => ['index', 'show', 'store', 'destroy', 'update']]);
+
 Route::get('/', function () {
     return view('welcome');
 });
+
