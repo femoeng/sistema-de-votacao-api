@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
-class CursoController extends Controller
+class LoginController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,18 +15,8 @@ class CursoController extends Controller
      */
     public function index()
     {
-        $cursos=\App\Curso::all();
-        return $cursos;
-    }
-    /**
-     * Display a listing of the resource associated to a Departamento.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function indexByDepartamento($id)
-    {
-        $cursos=\App\Curso::where('codDep',$id);
-        return $cursos;
+        $login= \App\Login::all();
+        return $login;
     }
 
     /**
@@ -40,17 +30,16 @@ class CursoController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage and store at the associated table.
+     * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request,$id)
+    public function store(Request $request)
     {
-        $cursos_data=$request->json()->all();
-        $Curso = \App\Curso::create($curos_data);
-        $Curso->projectos()->attach($id);
-        return $Curso;
+        $login_data=$request->json()->all();
+        $Login = \App\Login::create($login_data);
+        return $Login;
     }
 
     /**
@@ -61,8 +50,7 @@ class CursoController extends Controller
      */
     public function show($id)
     {
-        $Curso= \App\Curso::findOrFail($id);
-   
+        $Login= \App\Login::findOrFail($id);
     }
 
     /**
@@ -85,9 +73,9 @@ class CursoController extends Controller
      */
     public function update(Request $request, $id)
     {
-            $cursos = \App\Curso::findOrFail($id);
-            $cursos = $request->json();
-            $cursos->save();
+            $loguin = \App\Departamento::findOrFail($id);
+            $loguin = $request->json();
+            $loguin->save();
     }
 
     /**
@@ -98,7 +86,6 @@ class CursoController extends Controller
      */
     public function destroy($id)
     {
-        \App\Curso::destroy($id);
-
+        \App\Login::destroy($id);
     }
 }

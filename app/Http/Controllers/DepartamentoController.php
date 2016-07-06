@@ -15,7 +15,6 @@ class DepartamentoController extends Controller
      */
     public function index()
     {
-        //
         $departamentos= \App\Departamento::all();
         return $departamentos;
     }

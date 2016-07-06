@@ -1,9 +1,8 @@
 <?php
-
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateVisitantesTable extends Migration
+class CreateCriteriosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,14 +11,10 @@ class CreateVisitantesTable extends Migration
      */
     public function up()
     {
-        Schema::create('visitantes', function (Blueprint $table) {
+        Schema::create('criterios', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nome',6);
-            $table->string('tipDoc',100);
-            $table->string('numero_documento',5);
-            $table->string('contacto',9);
-            $table->string('email','45');
-            $table->string('tipo_visitante','45');
+            $table->decimal('pesoJuri',2,2);
+            $table->string('nome' ,120);
             
             $table->timestamps();
         });
@@ -32,6 +27,6 @@ class CreateVisitantesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('visitantes');
+        Schema::drop('criterios');
     }
 }

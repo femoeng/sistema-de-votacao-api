@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
-class CursoController extends Controller
+class ProjectistaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,18 +15,8 @@ class CursoController extends Controller
      */
     public function index()
     {
-        $cursos=\App\Curso::all();
-        return $cursos;
-    }
-    /**
-     * Display a listing of the resource associated to a Departamento.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function indexByDepartamento($id)
-    {
-        $cursos=\App\Curso::where('codDep',$id);
-        return $cursos;
+         $projectistas= \App\Projectista::all();
+        return $projectistas;
     }
 
     /**
@@ -40,17 +30,16 @@ class CursoController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage and store at the associated table.
+     * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request,$id)
     {
-        $cursos_data=$request->json()->all();
-        $Curso = \App\Curso::create($curos_data);
-        $Curso->projectos()->attach($id);
-        return $Curso;
+        $projectista_data=$request->json()->all();
+        $Departamento = \App\Departamento::create($projectista_data);
+        return $Departamento;
     }
 
     /**
@@ -61,8 +50,7 @@ class CursoController extends Controller
      */
     public function show($id)
     {
-        $Curso= \App\Curso::findOrFail($id);
-   
+        $Projectista = \App\Projectista::findOrFail($id);
     }
 
     /**
@@ -85,9 +73,9 @@ class CursoController extends Controller
      */
     public function update(Request $request, $id)
     {
-            $cursos = \App\Curso::findOrFail($id);
-            $cursos = $request->json();
-            $cursos->save();
+        $projectista= \App\Projectista::findOrFail($id);
+        $projectista= $request->json();
+        $projectista->save();
     }
 
     /**
@@ -98,7 +86,6 @@ class CursoController extends Controller
      */
     public function destroy($id)
     {
-        \App\Curso::destroy($id);
-
+        \App\Projectista::destroy($id);
     }
 }

@@ -11,11 +11,27 @@
 |
 */
 
+// Routas para departamentos
 Route::resource('departamentos','DepartamentoController',['only' => ['index', 'show', 'store', 'destroy', 'update']]);
+
+//Routas para Visitantes
 Route::resource('visitantes','VisitanteController',['only' => ['index', 'show', 'store', 'destroy', 'update']]);
+
+//Routas para cursos
 Route::group(['prefix'=>'departamento'],function(){   
 Route::resource('cursos','CursoController',['only' => ['index', 'show', 'store', 'destroy', 'update']]);
 Route::get('cursos','CursoController@indexByDepartamento');});
+
+//Routas para criterios
+Route::resource('criterios','CriterioController',['only' => ['index', 'show', 'store', 'destroy', 'update']]);
+
+//Routas para projectos
+Route::resource('projectos','ProjectoController',['only' => ['index', 'show', 'store', 'destroy', 'update']]);
+
+//Routas para projectistas
+Route::resource('projectistas','ProjectistaController',['only' => ['index', 'show', 'store', 'destroy', 'update']]);
+
+//Routas para criterios
 Route::resource('criterios','CriterioController',['only' => ['index', 'show', 'store', 'destroy', 'update']]);
 
 Route::get('/', function () {
