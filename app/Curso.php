@@ -6,11 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Curso extends Model
 {
-    protected $fillable = ['nome'];
+    protected $fillable = ['nome','departamento_id'];
 
-    public function projectos()
+    public function departamento()
     {
-       return $this->belongsToMany('\App\Projecto','provem');
+    	return $this->belongsTo('\App\Departamento');
     }
 
 }

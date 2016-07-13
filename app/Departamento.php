@@ -9,9 +9,8 @@ class Departamento extends Model
     //
     protected $fillable = ['nome'];
 
-    public function visitantes()
+    public function cursos()
     {
-         return $this->belongsToMany('\App\Visitante','juri');
-
+    	return $this->hasMany('\App\Cruso');
     }
 }

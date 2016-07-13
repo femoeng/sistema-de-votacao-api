@@ -15,24 +15,25 @@
 Route::resource('departamentos','DepartamentoController',['only' => ['index', 'show', 'store', 'destroy', 'update']]);
 
 //Routas para Visitantes
-Route::resource('visitantes','VisitanteController',['only' => ['index', 'show', 'store', 'destroy', 'update']]);
+Route::resource('visitantes','VisitanteController',['only' => ['index', 'show', 'store', 'destroy', 'update'], 'middleware'	=>	'validar_visitante']);
 
-//Routas para cursos
-Route::group(['prefix'=>'departamento'],function(){   
-Route::resource('cursos','CursoController',['only' => ['index', 'show', 'store', 'destroy', 'update']]);
-Route::get('cursos','CursoController@indexByDepartamento');});
+//Routas para cursos  
+Route::resource('departamento.cursos','CursoController',['only' => ['index', 'show', 'store', 'destroy', 'update'], 'middleware'=>'validar_cursos']);
 
 //Routas para criterios
-Route::resource('criterios','CriterioController',['only' => ['index', 'show', 'store', 'destroy', 'update']]);
+Route::resource('criterios','CriterioController',['only' => ['index', 'show', 'store', 'destroy', 'update'],
+ 'middleware'=>'validar_criterios']);
 
 //Routas para projectos
-Route::resource('projectos','ProjectoController',['only' => ['index', 'show', 'store', 'destroy', 'update']]);
+Route::resource('projectos','ProjectoController',['only' => ['index', 'show', 'store', 'destroy', 'update']
+	, 'middleware'=>'validar_projectos']);
 
 //Routas para projectistas
-Route::resource('projectistas','ProjectistaController',['only' => ['index', 'show', 'store', 'destroy', 'update']]);
+Route::resource('projectistas','ProjectistaController',['only' => ['index', 'show', 'store', 'destroy', 'update'], 'middleware'=>'validar_projectistas']);
 
 //Routas para criterios
-Route::resource('criterios','CriterioController',['only' => ['index', 'show', 'store', 'destroy', 'update']]);
+Route::resource('criterios','CriterioController',['only' => ['index', 'show', 'store', 'destroy', 'update']
+	, 'middleware'=>'validar_criterios']); 
 
 Route::get('/', function () {
     return view('welcome');

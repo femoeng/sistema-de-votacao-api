@@ -8,6 +8,9 @@ use App\Http\Requests;
 
 class ProjectistaController extends Controller
 {
+     public function __construct(){
+        $this->middleware('validar_projectista',['only'=>['store','update']]);
+    }
     /**
      * Display a listing of the resource.
      *

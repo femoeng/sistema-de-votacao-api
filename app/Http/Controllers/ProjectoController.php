@@ -8,6 +8,9 @@ use App\Http\Requests;
 
 class ProjectoController extends Controller
 {
+     public function __construct(){
+        $this->middleware('validar_projecto',['only'=>['store','update']]);
+    }
     /**
      * Display a listing of the resource.
      *

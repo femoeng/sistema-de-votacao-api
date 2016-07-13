@@ -8,6 +8,11 @@ use App\Http\Requests;
 
 class DepartamentoController extends Controller
 {
+    
+    public function __construct(){
+        $this->middleware('validar_departamento',['only'=>['store']]);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -36,7 +41,7 @@ class DepartamentoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {   
         $departamentos_data=$request->json()->all();
         $Departamento = \App\Departamento::create($departamentos_data);
         return $Departamento;

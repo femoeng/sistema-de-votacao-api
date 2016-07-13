@@ -8,6 +8,11 @@ use App\Http\Requests;
 
 class CursoController extends Controller
 {
+     public function __construct(){
+        $this->middleware('validar_curso',['only'=>['store','update']]);
+
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -16,16 +21,6 @@ class CursoController extends Controller
     public function index()
     {
         $cursos=\App\Curso::all();
-        return $cursos;
-    }
-    /**
-     * Display a listing of the resource associated to a Departamento.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function indexByDepartamento($id)
-    {
-        $cursos=\App\Curso::where('codDep',$id);
         return $cursos;
     }
 
@@ -48,8 +43,7 @@ class CursoController extends Controller
     public function store(Request $request,$id)
     {
         $cursos_data=$request->json()->all();
-        $Curso = \App\Curso::create($curos_data);
-        $Curso->projectos()->attach($id);
+        $Curso = \App\Curso::create($cursos_data);
         return $Curso;
     }
 

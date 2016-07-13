@@ -8,6 +8,9 @@ use App\Http\Requests;
 
 class VisitanteController extends Controller
 {
+     public function __construct(){
+        $this->middleware('validar_visitante',['only'=>['store','update']]);
+    }
     /**
      * Display a listing of the resource.
      *
