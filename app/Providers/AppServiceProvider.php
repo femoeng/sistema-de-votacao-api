@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-
+use Slugify;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -13,7 +13,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+      \App\Curso::saving(function($curso) {
+        $curso->slug = Slugify::slugify($curso->nome);
+      });
     }
 
     /**

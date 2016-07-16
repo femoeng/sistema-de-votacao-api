@@ -6,6 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Criterio extends Model
 {
-    protected $fillable = ['nome','pesoJuri'];
-
+    protected $fillable = ['nome'];
+    public $incrementing = false;
 }

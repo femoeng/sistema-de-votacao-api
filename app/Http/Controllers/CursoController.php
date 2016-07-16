@@ -8,9 +8,13 @@ use App\Http\Requests;
 
 class CursoController extends Controller
 {
-     public function __construct(){
-        $this->middleware('validar_curso',['only'=>['store','update']]);
-
+    private $request;
+     public function __construct(Request $request) {
+        $this->request = $request;
+        $this->middleware('verificar_existencia_do_departamento', ['only' => ['index', 'store']]);
+        $this->middleware('validar_criacao_do_curso', ['only' => ['store']]);
+        $this->middleware('verificar_existencia_do_curso', ['only' => ['show', 'destroy']]);
+        $this->middleware('validar_edicao_do_curso', ['only' => ['update']]);
     }
 
     /**
@@ -20,18 +24,17 @@ class CursoController extends Controller
      */
     public function index()
     {
-        $cursos=\App\Curso::all();
-        return $cursos;
-    }
+      $departamento = $this->request->departamento;
+      $cursos = $departamento->cursos()->get();
+      if (count($cursos) > 0) {
+        $curso_obj = [
+          'cursos' => $cursos
+        ];
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return $curso_obj;
+      } else {
+        abort(404);
+      }
     }
 
     /**
@@ -40,11 +43,12 @@ class CursoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request,$id)
+    public function store()
     {
-        $cursos_data=$request->json()->all();
-        $Curso = \App\Curso::create($cursos_data);
-        return $Curso;
+        $departamento = $this->request->departamento;
+        $cursos_data = $this->request->curso_data;
+        $curso = $departamento->cursos()->create($cursos_data);
+        return $curso;
     }
 
     /**
@@ -53,22 +57,11 @@ class CursoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        $Curso= \App\Curso::findOrFail($id);
-   
+      return $this->request->curso;
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
@@ -77,11 +70,14 @@ class CursoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update()
     {
-            $cursos = \App\Curso::findOrFail($id);
-            $cursos = $request->json();
-            $cursos->save();
+      $data = $this->request->curso_data;
+      $curso = $this->request->curso;
+      $curso->fill($data);
+      $curso->save();
+
+      return $curso;
     }
 
     /**
@@ -92,7 +88,8 @@ class CursoController extends Controller
      */
     public function destroy($id)
     {
-        \App\Curso::destroy($id);
-
+      $curso = $this->request->curso;
+      $curso->delete();
+      abort(204);
     }
 }

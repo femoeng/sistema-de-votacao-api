@@ -44,6 +44,13 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $routeMiddleware = [
+        'verificar_existencia_do_curso' => \App\Http\Middleware\VerificarExistenciaDoCurso::class,
+        'validar_edicao_do_curso' => \App\Http\Middleware\ValidarEdicaoDoCurso::class,
+
+        'verificar_existencia_do_departamento' => \App\Http\Middleware\VerificarExistenciaDoDepartamento::class,
+        'validar_edicao_do_departamento' => \App\Http\Middleware\ValidarEdicaoDoDepartamento::class,
+        'validar_criacao_do_curso'=>\App\Http\Middleware\ValidarCriacaoDoCurso::class ,
+
         'auth' => \App\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'can' => \Illuminate\Foundation\Http\Middleware\Authorize::class,
@@ -51,7 +58,6 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'validar_departamento'=>\App\Http\Middleware\ValidarDepartamento::class,
         'validar_criterio'=>\App\Http\Middleware\ValidarCriterio::class ,
-        'validar_curso'=>\App\Http\Middleware\ValidarCurso::class ,
         'validar_projectista'=>\App\Http\Middleware\ValidarProjectista::class ,
         'validar_projecto'=>\App\Http\Middleware\ValidarProjecto::class ,
         'validar_visitante'=>\App\Http\Middleware\ValidarVisitante::class,

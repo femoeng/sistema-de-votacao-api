@@ -12,30 +12,28 @@
 */
 
 // Routas para departamentos
-Route::resource('departamentos','DepartamentoController',['only' => ['index', 'show', 'store', 'destroy', 'update']]);
+$read_write = [
+  'only' => [
+    'index',
+    'show',
+    'store',
+    'destroy',
+    'update'
+  ]
+];
+Route::resource('departamentos','DepartamentoController', $read_write);
+
+//Routas para cursos
+Route::resource('departamentos.cursos','CursoController', $read_write);
 
 //Routas para Visitantes
-Route::resource('visitantes','VisitanteController',['only' => ['index', 'show', 'store', 'destroy', 'update'], 'middleware'	=>	'validar_visitante']);
-
-//Routas para cursos  
-Route::resource('departamento.cursos','CursoController',['only' => ['index', 'show', 'store', 'destroy', 'update'], 'middleware'=>'validar_cursos']);
-
-//Routas para criterios
-Route::resource('criterios','CriterioController',['only' => ['index', 'show', 'store', 'destroy', 'update'],
- 'middleware'=>'validar_criterios']);
+Route::resource('visitantes','VisitanteController', $read_write);
 
 //Routas para projectos
-Route::resource('projectos','ProjectoController',['only' => ['index', 'show', 'store', 'destroy', 'update']
-	, 'middleware'=>'validar_projectos']);
+Route::resource('projectos','ProjectoController', $read_write);
 
 //Routas para projectistas
-Route::resource('projectistas','ProjectistaController',['only' => ['index', 'show', 'store', 'destroy', 'update'], 'middleware'=>'validar_projectistas']);
+Route::resource('projectistas','ProjectistaController', $read_write);
 
 //Routas para criterios
-Route::resource('criterios','CriterioController',['only' => ['index', 'show', 'store', 'destroy', 'update']
-	, 'middleware'=>'validar_criterios']); 
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
+Route::resource('criterios','CriterioController', $read_write);

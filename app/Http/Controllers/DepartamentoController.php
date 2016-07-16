@@ -8,9 +8,11 @@ use App\Http\Requests;
 
 class DepartamentoController extends Controller
 {
-    
+
     public function __construct(){
-        $this->middleware('validar_departamento',['only'=>['store']]);
+        $this->middleware('validar_departamento', ['only'=>['store']]);
+        $this->middleware('validar_edicao_do_departamento', ['only' => ['update']]);
+        $this->middleware('verificar_existencia_do_departamento', ['only' => ['destroy', 'show']]);
     }
 
     /**
@@ -18,21 +20,18 @@ class DepartamentoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $departamentos= \App\Departamento::all();
-        return $departamentos;
+        $departamentos = \App\Departamento::all();
+        if (count($departamentos) > 0) {
+          return [
+            'departamentos' => $departamentos
+          ];
+        } else {
+          abort(404);
+        }
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -41,10 +40,10 @@ class DepartamentoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {   
-        $departamentos_data=$request->json()->all();
-        $Departamento = \App\Departamento::create($departamentos_data);
-        return $Departamento;
+    {
+        $departamentos_data = $request->departamento_data;
+        $departamento = \App\Departamento::create($departamentos_data);
+        return $departamento;
     }
 
     /**
@@ -53,21 +52,12 @@ class DepartamentoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request)
     {
-        $Departamento= \App\Departamento::findOrFail($id);
+        $departamento = $request->departamento;
+        return $departamento;
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        
-    }
 
     /**
      * Update the specified resource in storage.
@@ -76,11 +66,14 @@ class DepartamentoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-            $departamentos = \App\Departamento::findOrFail($id);
-            $departamentos = $request->json();
-            $departamentos->save();
+        $departamento = $request->departamento;
+        $data = $request->departamento_data;
+        $departamento->fill($data);
+        $departamento->save();
+
+        return $departamento;
     }
 
     /**
@@ -89,8 +82,9 @@ class DepartamentoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        \App\Departamento::destroy($id);
+      $departamento = $request->departamento;
+      $departamento->delete();
     }
 }
