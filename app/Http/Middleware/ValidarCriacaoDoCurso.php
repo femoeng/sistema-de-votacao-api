@@ -18,7 +18,6 @@ class ValidarCriacaoDoCurso
 
       return app(\App\Http\Middleware\VerificarExistenciaDoDepartamento::class)->handle($request, function($request) use ($next) {
         $data = $request->json()->all();
-
         if (isset($data['nome'])) {
           $request->{'curso_data'} = $data;
           return $next($request);

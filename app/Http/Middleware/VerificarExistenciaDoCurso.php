@@ -15,7 +15,7 @@ class VerificarExistenciaDoCurso
      */
     public function handle($request, Closure $next)
     {
-      return app(VerificarExistenciaDoDepartamento::class)->handle($request, function($request) use ($next) {
+      return app(\App\Http\Middleware\VerificarExistenciaDoDepartamento::class)->handle($request, function($request) use ($next) {
         $curso_id = $request->route()->parameter('cursos');
 
         $curso = \App\Curso::where('id', $curso_id)->OrWhere('slug', $curso_id)->first();

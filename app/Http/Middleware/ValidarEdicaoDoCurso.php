@@ -15,7 +15,7 @@ class ValidarEdicaoDoCurso
      */
     public function handle($request, Closure $next)
     {
-      return app(VerificarExistenciaDoCurso::class)->handle($request, function($request) use ($next) {
+      return app(\App\Http\Middleware\VerificarExistenciaDoCurso::class)->handle($request, function($request) use ($next) {
         $data = $request->json()->all();
 
         if ($data['nome']) {

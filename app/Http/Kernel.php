@@ -51,6 +51,10 @@ class Kernel extends HttpKernel
         'validar_edicao_do_departamento' => \App\Http\Middleware\ValidarEdicaoDoDepartamento::class,
         'validar_criacao_do_curso'=>\App\Http\Middleware\ValidarCriacaoDoCurso::class ,
 
+        'verificar_existencia_do_visitante' => \App\Http\Middleware\VerificarExistenciaVisitante::class,
+        'validar_edicao_do_visitante' => \App\Http\Middleware\ValidarEdicaoVisitante::class,
+        'validar_criacao_do_visitante'=>\App\Http\Middleware\ValidarCriacaoVisitante::class ,
+
         'auth' => \App\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'can' => \Illuminate\Foundation\Http\Middleware\Authorize::class,
