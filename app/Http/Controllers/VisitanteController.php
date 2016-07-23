@@ -8,8 +8,12 @@ use App\Http\Requests;
 
 class VisitanteController extends Controller
 {
-     public function __construct(){
-        $this->middleware('validar_visitante',['only'=>['store','update']]);
+    private $request;
+    public function __construct(Request $request) {
+        $this->request = $request;
+        $this->middleware('validar_criacao_do_visitante', ['only' => ['store']]);
+        $this->middleware('verificar_existencia_do_visitante', ['only' => ['show', 'destroy']]);
+        $this->middleware('validar_edicao_do_visitante', ['only' => ['update']]);
     }
     /**
      * Display a listing of the resource.
@@ -18,8 +22,17 @@ class VisitanteController extends Controller
      */
     public function index()
     {
-            $visitante=\App\Visitante::all();
-            return $visitante;
+        $visitante = $this->request->visitante;
+        $visitantes = $visitante->get();
+        if (count($visitantes) > 0) {
+            $visitante_obj = [
+                'visitante' => $visitantes
+            ];
+
+            return $visitante_obj;
+        } else {
+            abort(404);
+        }
     }
 
     /**
