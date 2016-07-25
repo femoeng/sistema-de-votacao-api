@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class VerificarVisitante
+class VerificarEdicaoCriterio
 {
     /**
      * Handle an incoming request.
@@ -15,6 +15,13 @@ class VerificarVisitante
      */
     public function handle($request, Closure $next)
     {
-        return $next($request);
+            $data = $request->json()->all();
+            if (isset($data['id'])) {
+                $request->{'criterio_data'} = $data;
+                return $next($request);
+            } else {
+                abort(400);
+            }
+
     }
 }

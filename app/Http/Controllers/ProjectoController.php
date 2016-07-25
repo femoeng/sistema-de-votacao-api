@@ -8,8 +8,12 @@ use App\Http\Requests;
 
 class ProjectoController extends Controller
 {
-     public function __construct(){
-        $this->middleware('validar_projecto',['only'=>['store','update']]);
+    private $request;
+    public function __construct(Request $request) {
+        $this->request = $request;
+        $this->middleware('validar_criacao_do_projecto', ['only' => ['store']]);
+        $this->middleware('verificar_existencia_do_projecto', ['only' => ['show', 'destroy']]);
+        $this->middleware('validar_edicao_do_projecto', ['only' => ['update']]);
     }
     /**
      * Display a listing of the resource.

@@ -4,8 +4,8 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class ValidarVisitante
-{ 
+class VerificarExistenciaCriterio
+{
     /**
      * Handle an incoming request.
      *
@@ -15,13 +15,13 @@ class ValidarVisitante
      */
     public function handle($request, Closure $next)
     {
-       $data=$request->json()->all();
-         if(isset($data['nome']) && isset($data['tipoDoc']) && isset($data['numero_Documento']) $$ isset($data['contacto']) && isset($data['email']) && isset($data['tipo_visitante'])){
+        $criterio_id = $request->route()->parameter('criterios');
+        $criterio = \App\Criterio::findOrFail($criterio_id);
+        if (isset($criterio)) {
+            $request->{'criterio'} = $criterio;
             return $next($request);
-        }else{
-            abort(400);
-       }
-       
+        } else {
+            abort(404);
+        }
     }
-    
 }

@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class ValidarCriacaoVisitante
+class VerificarExistenciaProjectista
 {
     /**
      * Handle an incoming request.
@@ -15,11 +15,13 @@ class ValidarCriacaoVisitante
      */
     public function handle($request, Closure $next)
     {
-        $data=$request->json()->all();
-        if(isset($data['nome']) && isset($data['tipoDoc']) && isset($data['numero_Documento']) && isset($data['contacto']) && isset($data['email']) && isset($data['tipo_visitante'])){
+        $projectista_id = $request->route()->parameter('projectistas');
+        $projectista = \App\Projectista::findOrFail($projectista_id);
+        if (isset($projectista)) {
+            $request->{'projectista'} = $projectista;
             return $next($request);
-        }else{
-            abort(400);
+        } else {
+            abort(404);
         }
     }
 }

@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class ValidarProjectista
+class ValidarCriacaoProjecto
 {
     /**
      * Handle an incoming request.
@@ -15,11 +15,11 @@ class ValidarProjectista
      */
     public function handle($request, Closure $next)
     {
-       $data=$request->json()->all();
-         if(isset($data['nome']) && isset($data['apelido']) && isset($data['numero_celular']) && isset($data['curso_id'])){
+        $data=$request->json()->all();
+        if(isset($data['titulo']) && isset($data['areaAplic']) && isset($data['descr']) && isset($data['imagem']) && isset($data['tutor'])){
             return $next($request);
         }else{
             abort(400);
-       }
+        }
     }
 }
