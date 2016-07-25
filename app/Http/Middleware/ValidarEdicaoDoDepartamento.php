@@ -17,7 +17,7 @@ class ValidarEdicaoDoDepartamento
     {
       return app(\App\Http\Middleware\VerificarExistenciaDoDepartamento::class)->handle($request, function($request) use($next) {
         $data = $request->json()->all();
-        if (isset($data['nome'])) {
+        if (isset($data['id'])) {
           $request->{'departamento_data'} = $data;
           return $next($request);
         } else {
