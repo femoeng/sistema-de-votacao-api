@@ -15,7 +15,7 @@ class CreateVotaTable extends Migration
         Schema::create('vota', function (Blueprint $table) {
             $table->integer('projecto_id')->unsigned();
             $table->integer('visitante_id')->unsigned();
-            $table->integer('criterio_id')->unsigned();
+            $table->string('criterio_id');
             $table->foreign('projecto_id')
             ->references('id')
             ->on('projectos');

@@ -8,6 +8,13 @@ use App\Http\Requests;
 
 class ProjectistaController extends Controller
 {
+    private $request;
+    public function __construct(Request $request) {
+        $this->request = $request;
+        $this->middleware('validar_criacao_do_projectista', ['only' => ['store']]);
+        $this->middleware('verificar_existencia_do_projectista', ['only' => ['show', 'destroy']]);
+        $this->middleware('validar_edicao_do_projectista', ['only' => ['update']]);
+    }
     /**
      * Display a listing of the resource.
      *
