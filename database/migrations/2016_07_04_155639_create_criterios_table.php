@@ -12,10 +12,9 @@ class CreateCriteriosTable extends Migration
     public function up()
     {
         Schema::create('criterios', function (Blueprint $table) {
-            $table->increments('id');
-            $table->decimal('pesoJuri',2,2);
+            $table->string('id')->primary();
             $table->string('nome' ,120);
-            
+
             $table->timestamps();
         });
     }

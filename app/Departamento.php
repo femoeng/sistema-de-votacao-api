@@ -7,11 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class Departamento extends Model
 {
     //
-    protected $fillable = ['nome'];
+    protected $fillable = ['id', 'nome'];
+    public $incrementing = false;
 
-    public function visitantes()
+    public function cursos()
     {
-         return $this->belongsToMany('\App\Visitante','juri');
-
+    	return $this->hasMany('\App\Curso');
     }
 }

@@ -8,6 +8,11 @@ use App\Http\Requests;
 
 class CriterioController extends Controller
 {
+    public function __construct(){
+        $this->middleware('validar_criterio',['only'=>['store','update']]);
+    }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -50,7 +55,7 @@ class CriterioController extends Controller
      */
     public function show($id)
     {
-        $Criterio= \App\Criterio::findOrFail($id);
+        $Criterio = \App\Criterio::findOrFail($id);
     }
 
     /**

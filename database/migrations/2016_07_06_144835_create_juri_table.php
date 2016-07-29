@@ -13,7 +13,7 @@ class CreateJuriTable extends Migration
     public function up()
     {
         Schema::create('juri', function (Blueprint $table) {
-            $table->integer('departamento_id')->unsigned();
+            $table->string('departamento_id');
             $table->integer('visitante_id')->unsigned();
             $table->foreign('departamento_id')
             ->references('id')
