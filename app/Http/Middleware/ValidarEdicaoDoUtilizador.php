@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class ValidarRegistoDeUtilizador
+class ValidarEdicaoDoDepartamento
 {
     /**
      * Handle an incoming request.
@@ -15,15 +15,14 @@ class ValidarRegistoDeUtilizador
      */
     public function handle($request, Closure $next)
     {
-        if (isset($data['nome']) && isset($data['senha']) && isset($data['privilegio'])) {
-          $utilizador['nome'] = $data['nome'];
-          $utilizador['senha'] = \Hash::make($data['senha']);
-          $utilizador['privilegio'] = $data['privilegio'];
-          $request->utilizador_data = $utilizador;
+      return app(\App\Http\Middleware\VerificarExistenciaDoUtilizador::class)->handle($request, function($request) use($next) {
+        $data = $request->json()->all();
+        if (isset($data['id'])) {
+          $request->{'utilizador_data'} = $data;
           return $next($request);
         } else {
           abort(400);
         }
-
+      });
     }
 }
