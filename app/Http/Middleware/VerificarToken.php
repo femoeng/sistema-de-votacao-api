@@ -24,11 +24,17 @@ class VerificarToken
 
         if ($sessao) {
           $utilizador = $sessao->utilizador;
-          if ($utilizador->privilegio == $privilegio) {
+
+          if ($privilegio == 'qualquer') {
             $request->{'utilizador'} = $utilizador;
             return $next($request);
           } else {
-            abort(403);
+            if ($utilizador->privilegio == $privilegio) {
+              $request->{'utilizador'} = $utilizador;
+              return $next($request);
+            } else {
+              abort(403);
+            }
           }
         } else {
           return abort(401, 'Not authenticate', ['WWW-Authenticate' => 'Basic']);
