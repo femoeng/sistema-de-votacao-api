@@ -16,13 +16,12 @@ class CreateCursosTable extends Migration
             $table->increments('id');
             $table->string('slug');
             $table->string('nome', 80);
-            $table->integer('departamento_id')->unsigned();
+            $table->string('departamento_id');
             $table->foreign('departamento_id')
                   ->references('id')
                   ->on('departamentos')
                   ->onDelete('cascade')
                   ->onUpdate('cascade');
-
             $table->unique(['slug', 'departamento_id']);
             $table->timestamps();
         });
