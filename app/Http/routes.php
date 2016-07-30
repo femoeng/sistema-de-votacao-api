@@ -22,6 +22,7 @@ $read_write = [
     ]
   ];
 
+  Route::post('registo', 'UtilizadorController@registo');
   //Rotas para departamentos
   Route::resource('departamentos','DepartamentoController', $read_write);
 

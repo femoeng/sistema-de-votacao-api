@@ -44,6 +44,7 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $routeMiddleware = [
+        'validar_registo_do_primeiro_utilizador' => \App\Http\Middleware\ValidarRegistoDeUtilizador::class,
         'verificar_existencia_do_curso' => \App\Http\Middleware\VerificarExistenciaDoCurso::class,
         'validar_edicao_do_curso' => \App\Http\Middleware\ValidarEdicaoDoCurso::class,
         'validar_criacao_do_curso'=>\App\Http\Middleware\ValidarCriacaoDoCurso::class ,
