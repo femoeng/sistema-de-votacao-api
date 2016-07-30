@@ -3,6 +3,7 @@
 namespace App\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
+use App\Http\Middleware\VerificarToken;
 
 class Kernel extends HttpKernel
 {
@@ -44,6 +45,8 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $routeMiddleware = [
+        'verificar_token' => \App\Http\Middleware\VerificarToken::class,
+        'autenticacao' => \App\Http\Middleware\Autenticacao::class,
         'validar_registo_do_primeiro_utilizador' => \App\Http\Middleware\ValidarRegistoDeUtilizador::class,
         'verificar_existencia_do_curso' => \App\Http\Middleware\VerificarExistenciaDoCurso::class,
         'validar_edicao_do_curso' => \App\Http\Middleware\ValidarEdicaoDoCurso::class,
