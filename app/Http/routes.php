@@ -12,6 +12,7 @@
 */
 // Routas para departamentos
 
+  //primeira vez a acessar o sistema
   Route::post('registo', 'UtilizadorController@registo');
   Route::group(['middleware' => 'autenticacao'], function() {
     Route::post('login', 'SessaoController@store');
@@ -22,14 +23,16 @@
   ];
 
   Route::group(['middleware' => 'verificar_token:admin'], function() use ($read_write) {
-    //Routas para cursos
-    Route::resource('departamentos.cursos','CursoController', $read_write);
-
     //Routas para Visitantes
     Route::resource('visitantes','VisitanteController', $read_write);
 
     //Routas para projectos
     Route::resource('projectos','ProjectoController', $read_write);
+    //Rotas para utilizadores
+    Route::resource('utilizadores','UtilizadorController', $read_write);
+
+    //Routas para cursos
+    Route::resource('departamentos.cursos','CursoController', $read_write);
 
     //Routas para projectistas
     Route::resource('projectistas','ProjectistaController', $read_write);
@@ -42,4 +45,7 @@
 Route::group(['middleware' => 'verificar_token:superadmin'], function() use($read_write) {
   //Rotas para departamentos
   Route::resource('departamentos','DepartamentoController', $read_write);
+  
+  //Routas para cursos
+  Route::resource('departamentos.cursos','CursoController', $read_write);
 });
