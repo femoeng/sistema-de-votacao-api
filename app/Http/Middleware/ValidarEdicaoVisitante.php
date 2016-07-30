@@ -24,6 +24,6 @@ class ValidarEdicaoVisitante
                 abort(400);
             }
         });
-        return $next($request);
+
     }
 }
