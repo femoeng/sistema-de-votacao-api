@@ -53,6 +53,10 @@ class Kernel extends HttpKernel
         'validar_edicao_do_departamento' => \App\Http\Middleware\ValidarEdicaoDoDepartamento::class,
         'validar_departamento'=>\App\Http\Middleware\ValidarDepartamento::class,
 
+        'verificar_existencia_do_utilizador' => \App\Http\Middleware\VerificarExistenciaDoUtilizador::class,
+        'validar_edicao_do_utilizador' => \App\Http\Middleware\ValidarEdicaoDoUtilizador::class,
+        'validar_utilizador'=>\App\Http\Middleware\ValidarUtilizador::class,
+
         'verificar_existencia_do_visitante' => \App\Http\Middleware\VerificarExistenciaVisitante::class,
         'validar_edicao_do_visitante' => \App\Http\Middleware\ValidarEdicaoVisitante::class,
         'validar_criacao_do_visitante'=>\App\Http\Middleware\ValidarCriacaoVisitante::class ,

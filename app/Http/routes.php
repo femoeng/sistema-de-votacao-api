@@ -22,9 +22,13 @@ $read_write = [
     ]
   ];
 
+  //primeira vez a acessar o sistema
   Route::post('registo', 'UtilizadorController@registo');
   //Rotas para departamentos
   Route::resource('departamentos','DepartamentoController', $read_write);
+
+  //Rotas para utilizadores
+  Route::resource('utilizadores','UtilizadorController', $read_write);
 
   //Routas para cursos
   Route::resource('departamentos.cursos','CursoController', $read_write);
