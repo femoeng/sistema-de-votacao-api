@@ -3,6 +3,7 @@
 namespace App\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
+use App\Http\Middleware\VerificarToken;
 
 class Kernel extends HttpKernel
 {
@@ -44,6 +45,9 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $routeMiddleware = [
+        'verificar_token' => \App\Http\Middleware\VerificarToken::class,
+        'autenticacao' => \App\Http\Middleware\Autenticacao::class,
+        'validar_registo_do_primeiro_utilizador' => \App\Http\Middleware\ValidarRegistoDeUtilizador::class,
         'verificar_existencia_do_curso' => \App\Http\Middleware\VerificarExistenciaDoCurso::class,
         'validar_edicao_do_curso' => \App\Http\Middleware\ValidarEdicaoDoCurso::class,
         'validar_criacao_do_curso'=>\App\Http\Middleware\ValidarCriacaoDoCurso::class ,
@@ -51,6 +55,10 @@ class Kernel extends HttpKernel
         'verificar_existencia_do_departamento' => \App\Http\Middleware\VerificarExistenciaDoDepartamento::class,
         'validar_edicao_do_departamento' => \App\Http\Middleware\ValidarEdicaoDoDepartamento::class,
         'validar_departamento'=>\App\Http\Middleware\ValidarDepartamento::class,
+
+        'verificar_existencia_do_utilizador' => \App\Http\Middleware\VerificarExistenciaDoUtilizador::class,
+        'validar_edicao_do_utilizador' => \App\Http\Middleware\ValidarEdicaoDoUtilizador::class,
+        'validar_utilizador'=>\App\Http\Middleware\ValidarUtilizador::class,
 
         'verificar_existencia_do_visitante' => \App\Http\Middleware\VerificarExistenciaVisitante::class,
         'validar_edicao_do_visitante' => \App\Http\Middleware\ValidarEdicaoVisitante::class,
