@@ -8,9 +8,9 @@ use App\Http\Requests;
 
 class ProjectistaController extends Controller
 {
-    private $request;
-    public function __construct(Request $request) {
-        $this->request = $request;
+    
+    public function __construct() {
+        
         $this->middleware('validar_criacao_do_projectista', ['only' => ['store']]);
         $this->middleware('verificar_existencia_do_projectista', ['only' => ['show', 'destroy']]);
         $this->middleware('validar_edicao_do_projectista', ['only' => ['update']]);
@@ -23,7 +23,7 @@ class ProjectistaController extends Controller
     public function index()
     {
          $projectistas= \App\Projectista::all();
-        return $projectistas;
+        return ['projectistas'=>$projectistas];
     }
 
     /**
@@ -42,11 +42,17 @@ class ProjectistaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request,$id)
+    public function store(Request $request)
     {
-        $projectista_data=$request->json()->all();
-        $Departamento = \App\Departamento::create($projectista_data);
-        return $Departamento;
+        $projectista_data=$request->projectista_data;
+        $projectista=new \App\Projectista($projectista_data);
+        if(isset($request->curso)){
+            
+            $projectista->curso()->associate($request->curso);
+        }
+        
+        $projectista->save();
+        return $projectista;
     }
 
     /**
