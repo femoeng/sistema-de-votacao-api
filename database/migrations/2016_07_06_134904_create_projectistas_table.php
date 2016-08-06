@@ -13,14 +13,16 @@ class CreateProjectistasTable extends Migration
     public function up()
     {
         Schema::create('projectistas', function (Blueprint $table) {
+            
             $table->increments('id');
-            $table->string('apelido',15);
-            $table->string('nome',50);
+            $table->string('numero_estudante')->nullable();
+            $table->string('apelido');
+            $table->string('nome');
             $table->integer('numero_celular')->unsigned();
-            $table->integer('curso_id')->unsigned();
+            $table->integer('curso_id')->unsigned()->nullable();
             $table->foreign('curso_id')->
             references('id')->
-            on('cursos');
+            on('cursos')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }
