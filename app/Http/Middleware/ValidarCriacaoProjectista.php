@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class ValidarProjectista
+class ValidarCriacaoProjectista
 {
     /**
      * Handle an incoming request.
@@ -15,14 +15,52 @@ class ValidarProjectista
      */
     public function handle($request, Closure $next)
     {
-        return app(App\Middleware\VerificarExistenciaDoCurso::class)->handle($request, function($request) use($next){
-            $data=$request->json()->all();
-            if(isset($data['nome']) && isset($data['apelido']) && isset($data['numero_celular']) && isset($data['curso_id'])){
-                return $next($request);
+        $data=$request->json()->all();
+        $projectista_valido=true;
+        $arrayErro=[];
+        if(isset($data["nome"])){
+            
+        }else{
+            $projectista_valido=false;
+            array_push($arrayErro, "O nome e obrigatorio");
+        }
+        if(isset($data["apelido"])){
+
+        }else{
+            $projectista_valido=false;
+            array_push($arrayErro, "O apelido e obrigatorio");
+        }
+        if(isset($data["numero_celular"])){
+
+        }else{
+            $projectista_valido=false;
+            array_push($arrayErro, "O numero_celular e obrigatorio");
+        }
+        if(isset($data["numero_estudante"])){
+
+        }else{
+            
+            
+        }
+        if(isset($data["curso"])){
+            $curso=\App\Curso::where('id', $data['curso'])->orWhere('slug',$data['curso'])->first();
+            if(isset($curso)){
+                $request->{"curso"}=$curso;
             }else{
-                abort(400);
+                $projectista_valido=false;
+                array_push($arrayErro, "O curso nao existe");
             }
-        });
+        }
+
+
+        if($projectista_valido){
+            $request->{"projectista_data"}=$data;
+            return $next($request);
+        }else{
+            return response()->json($arrayErro, 400);
+        }
+
+
 
     }
 }
