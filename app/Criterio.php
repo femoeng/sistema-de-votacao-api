@@ -8,4 +8,6 @@ class Criterio extends Model
 {
     protected $fillable = ['nome'];
     public $incrementing = false;
+
+    
 }

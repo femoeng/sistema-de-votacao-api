@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Projecto extends Model
 {
-    protected $fillable=['tituloPro','areaAplic','','descr','imagem','tutor'];
+    protected $fillable=['tituloPro','areaAplic','descr','imagem','tutor'];
 
      public function cursos()
     {
@@ -14,7 +14,7 @@ class Projecto extends Model
     }
     public function projectistas()
     {
-        return $this->belongsToMany('\App\Projecto','projecta')->withPivot('cetagoria_represetante');
+        return $this->belongsToMany('\App\Projectista','projecta')->withPivot('categoria_represetante');
     }
        public function criterios()
     {

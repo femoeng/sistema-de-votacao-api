@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class VerificarVisitante
+class VerificarExistenciaVisitante
 {
     /**
      * Handle an incoming request.
