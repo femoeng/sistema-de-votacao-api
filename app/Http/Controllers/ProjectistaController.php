@@ -45,8 +45,8 @@ class ProjectistaController extends Controller
     public function store(Request $request,$id)
     {
         $projectista_data=$request->json()->all();
-        $Departamento = \App\Departamento::create($projectista_data);
-        return $Departamento;
+        $projectista = \App\Projectista::create($projectista_data);
+        return $projectista;
     }
 
     /**
@@ -58,6 +58,7 @@ class ProjectistaController extends Controller
     public function show($id)
     {
         $Projectista = \App\Projectista::findOrFail($id);
+        return $Projectista;
     }
 
     /**

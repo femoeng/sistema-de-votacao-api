@@ -56,6 +56,7 @@ class CriterioController extends Controller
     public function show($id)
     {
         $Criterio = \App\Criterio::findOrFail($id);
+        return $Criterio;
     }
 
     /**

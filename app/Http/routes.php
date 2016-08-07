@@ -43,7 +43,8 @@
 
 
 Route::group(['middleware' => 'verificar_token:superadmin'], function() use($read_write) {
-  //Rotas para departamentos
+
+ //Rotas para departamentos
   Route::resource('departamentos','DepartamentoController', $read_write);
 
   //Routas para cursos
@@ -54,3 +55,9 @@ Route::group(['middleware' => 'verificar_token:superadmin'], function() use($rea
 Route::group(['middleware' => 'verificar_token:qualquer'], function() use($read_write) {
   Route::delete('logout/{id}', 'SessaoController@destroy');
 });
+
+ Route::resource('projectos','ProjectoController', $read_write);
+ Route::resource('criterios','CriterioController', $read_write);
+ 
+
+

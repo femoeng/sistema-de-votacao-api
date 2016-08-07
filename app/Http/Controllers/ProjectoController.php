@@ -22,7 +22,7 @@ class ProjectoController extends Controller
      */
     public function index()
     {
-        $projectos= \App\Curso::all();
+        $projectos= \App\Projecto::all();
         return $projectos;
     }
 
@@ -45,7 +45,7 @@ class ProjectoController extends Controller
     public function store(Request $request)
     {
         $projecto_data=$request->json()->all();
-        $Projecto= \App\Projecto::create();
+        $Projecto= \App\Projecto::create($projecto_data);
         return $Projecto;
     }
 
@@ -58,6 +58,7 @@ class ProjectoController extends Controller
     public function show($id)
     {
         $Projecto= \App\Projecto::findOrFail($id);
+        return $Projecto;
     }
 
     /**
@@ -80,7 +81,7 @@ class ProjectoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $Projecto= \App\Departamento::findOrFail($id);
+        $Projecto= \App\Projecto::findOrFail($id);
         $Projecto= $request->json();
         $Projecto->save();
     }

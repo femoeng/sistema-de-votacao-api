@@ -17,6 +17,7 @@ class ValidarCriacaoVisitante
     {
         $data=$request->json()->all();
         if(isset($data['nome']) && isset($data['tipoDoc']) && isset($data['numero_Documento']) && isset($data['contacto']) && isset($data['email']) && isset($data['tipo_visitante'])){
+           $request->{'visitante_data'} = $data;
             return $next($request);
         }else{
             abort(400);

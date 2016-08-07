@@ -15,7 +15,7 @@ class VerificarExistenciaProjecto
      */
     public function handle($request, Closure $next)
     {
-        $projecto_id = $request->route()->parameter('projectistas');
+        $projecto_id = $request->route()->parameter('projecto');
         $projecto = \App\Projecto::findOrFail($projecto_id);
         if (isset($projecto)) {
             $request->{'projecto'} = $projecto;
