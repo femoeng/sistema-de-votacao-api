@@ -46,7 +46,7 @@ class ValidarCriacaoProjecto
             $request->{"cursos"}=[];
             //return $data['cursos'];
             foreach ($data['cursos'] as $curso_id) {
-                $curso= \App\Curso::where('id',$curso_id)->orWhere('slug',$curso_id)->first();
+                $curso= \App\Curso::where('id',$curso_id)->orWhere('slug',$curso_id )->first();
                 if(isset($curso)){
                     array_push($request->cursos, $curso);
 

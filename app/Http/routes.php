@@ -23,7 +23,7 @@
     'only' => ['index', 'show', 'store', 'destroy', 'update']
   ];
 
-  //Routas para projectistas
+  //Routas para  projectistas
     Route::resource('projectistas','ProjectistaController', $read_write);
 
 

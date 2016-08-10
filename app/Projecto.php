@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Projecto extends Model
 {
-    protected $fillable=['titulo','area_aplicacao','descricao','imagem','tutor'];
+    protected $fillable=['titulo','area_aplicacao','descricao','imagem','tutor' ];
 
      public function cursos()
     {
@@ -18,3 +18,4 @@ class Projecto extends Model
     }
        
 }
+s
