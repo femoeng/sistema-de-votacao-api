@@ -20,6 +20,7 @@ class CreateProjectosTable extends Migration
             $table->string('imagem',120)->nullable();
             $table->string('tutor',45)->nullable();
             $table->timestamps();
+            
         });
     }
 

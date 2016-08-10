@@ -45,7 +45,7 @@ class ProjectoController extends Controller
     public function store(Request $request)
     {
         $projecto_data=$request->projecto_data;
-        $projecto=new \App\Projecto($projecto_data);
+        $projecto=new \App\Projecto($projecto_data );
         $projecto->save();
         if(isset($request->cursos)){
 
