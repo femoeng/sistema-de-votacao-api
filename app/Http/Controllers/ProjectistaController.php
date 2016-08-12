@@ -44,10 +44,10 @@ class ProjectistaController extends Controller
      */
     public function store(Request $request)
     {
-<<<<<<< HEAD
+
         $projectista_data=$request->json()->all();
         $projectista = \App\Projectista::create($projectista_data);
-=======
+
         $projectista_data=$request->projectista_data;
         $projectista=new \App\Projectista($projectista_data);
         if(isset($request->curso)){
@@ -56,7 +56,7 @@ class ProjectistaController extends Controller
         }
         
         $projectista->save();
->>>>>>> fc914e361c3b4abed2b601bc418698e041381ab8
+
         return $projectista;
     }
 

@@ -58,6 +58,9 @@ Route::group(['middleware' => 'verificar_token:qualquer'], function() use($read_
 
  Route::resource('projectos','ProjectoController', $read_write);
  Route::resource('criterios','CriterioController', $read_write);
+  Route::resource('visitantes','VisitanteController', $read_write);
+  Route::resource('vota','VotoController',$read_write);
+
  
 
 
