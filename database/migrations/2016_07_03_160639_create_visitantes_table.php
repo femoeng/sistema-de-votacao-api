@@ -15,14 +15,14 @@ class CreateVisitantesTable extends Migration
         Schema::create('visitantes', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nome',6);
-            $table->string('tipDoc',100);
-            $table->string('numero_documento',5);
-            $table->string('contacto',9);
-            $table->string('email','45');
-            $table->string('tipo_visitante','45');
+            $table->enum('tipo_documento',['BI','passaporte','DIRE']);
+            $table->string('numero_documento',128)->unique();
+            $table->string('contacto')->unique();
+            $table->string('email',128);
+            $table->enum('tipo_visitante',['externo','interno']);
             
             $table->timestamps();
-        });
+        }); 
     }
 
     /**
