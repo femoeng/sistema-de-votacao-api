@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class ValidarCriacaoVisitante
+class ValidarVoto
 {
     /**
      * Handle an incoming request.
@@ -15,9 +15,10 @@ class ValidarCriacaoVisitante
      */
     public function handle($request, Closure $next)
     {
-        $data=$request->json()->all();
-        if(isset($data['nome']) && isset($data['tipoDoc']) && isset($data['numero_Documento']) && isset($data['contacto']) && isset($data['email']) && isset($data['tipo_visitante'])){
-           $request->{'visitante_data'} = $data;
+        $data= $request->json()->all();
+        if(isset($data['visitante']) && isset($data['criterio_id']) 
+        && isset($data['projecto_id'])) {
+        $request->{'voto_data'} = $data;
             return $next($request);
         }else{
             abort(400);
