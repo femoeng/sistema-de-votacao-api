@@ -16,10 +16,59 @@ class ValidarCriacaoVisitante
     public function handle($request, Closure $next)
     {
         $data=$request->json()->all();
-        if(isset($data['nome']) && isset($data['tipoDoc']) && isset($data['numero_Documento']) && isset($data['contacto']) && isset($data['email']) && isset($data['tipo_visitante'])){
-            return $next($request);
-        }else{
-            abort(400);
+        $visitante_valido=true;
+        $arrayErro=[];
+        if(isset($data['nome'])) {
+
+        }else {
+            $visitante_valido=false;
+            array_push($arrayErro,"O nome eh obrigatorio"); 
+
         }
+
+        if(isset($data['tipo_documento'])){
+         } 
+        else {
+           $visitante_valido=false;
+            array_push($arrayErro,"O tipo de documento eh obrigatorio");  
+
+        }
+
+        if (isset($data['numero_documento'])){
+         
+        } else { 
+             $visitante_valido=false;
+            array_push($arrayErro,"O numero de documento eh obrigatorio"); 
+        }
+
+        if(isset($data['contacto'])){
+
+        }else{
+            $visitante_valido=false;
+            array_push($arrayErro,"O contacto eh obrigatorio"); 
+
+        }
+
+
+        if(isset($data['email'])){
+
+        }
+
+       if(isset($data['tipo_visitante'])){
+
+       }else{
+        $visitante_valido=false;
+            array_push($arrayErro,"O tipo visitante eh obrigatorio"); 
+
+       }
+
+       if($visitante_valido){
+            $request->{"visitante_data"}=$data;
+            return $next($request);
+       }else{
+            return response()->json($arrayErro,400);
+
+            
+       } 
     }
 }
