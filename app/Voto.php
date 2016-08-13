@@ -8,18 +8,18 @@ class Voto extends Model
 {
    protected $table = "vota";
 
-    public function visitantes(){
+    public function visitante(){
 //belongsTo
- return $this->belongsTo('\App\Visitante','vota')->withPivot('visitante_id');
+ return $this->belongsTo('\App\Visitante','vota');
 
     }
      public function criterios(){
- return $this->belongsTo('\App\criterio','vota')->withPivot('criterio_id');
+return $this->belongsTo('\App\criterio','vota');
 
     }
      public function projectos(){
 
- return $this->belongsTo('\App\Projecto','vota')->withPivot('projecto_id');
+ return $this->belongsTo('\App\Projecto','vota');
 
     }
 }
