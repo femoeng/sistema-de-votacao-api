@@ -12,6 +12,7 @@
 */
 // Routas para departamentos
 
+
   //primeira vez a acessar o sistema
   Route::post('registo', 'UtilizadorController@registo');
   Route::group(['middleware' => 'autenticacao'], function() {
@@ -22,7 +23,11 @@
     'only' => ['index', 'show', 'store', 'destroy', 'update']
   ];
 
-  Route::group(['middleware' => 'verificar_token:admin'], function() use ($read_write) {
+  //Routas para  projectistas
+    Route::resource('projectistas','ProjectistaController', $read_write);
+
+
+  //Route::group(['middleware' => 'verificar_token:admin'], function() use ($read_write) {
     //Routas para Visitantes
     Route::resource('visitantes','VisitanteController', $read_write);
 
@@ -34,22 +39,22 @@
     //Routas para cursos
     Route::resource('departamentos.cursos','CursoController', $read_write);
 
-    //Routas para projectistas
-    Route::resource('projectistas','ProjectistaController', $read_write);
+    
 
     //Routas para criterios
     Route::resource('criterios','CriterioController', $read_write);
-  });
+  //});
 
 
-Route::group(['middleware' => 'verificar_token:superadmin'], function() use($read_write) {
 
- //Rotas para departamentos
+//Route::group(['middleware' => 'verificar_token:superadmin'], function() use($read_write) {
+  //Rotas para departamentos
+
   Route::resource('departamentos','DepartamentoController', $read_write);
 
   //Routas para cursos
   Route::resource('departamentos.cursos','CursoController', $read_write);
-});
+//});
 
 
 Route::group(['middleware' => 'verificar_token:qualquer'], function() use($read_write) {
