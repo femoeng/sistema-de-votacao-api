@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class VerificarExistenciaProjecto
+class ValidarVoto
 {
     /**
      * Handle an incoming request.
@@ -15,13 +15,13 @@ class VerificarExistenciaProjecto
      */
     public function handle($request, Closure $next)
     {
-        $projecto_id = $request->route()->parameter('projecto');
-        $projecto = \App\Projecto::findOrFail($projecto_id);
-        if (isset($projecto)) {
-            $request->{'projecto'} = $projecto;
+        $data= $request->json()->all();
+        if(isset($data['visitante']) && isset($data['criterio_id']) 
+        && isset($data['projecto_id'])) {
+        $request->{'voto_data'} = $data;
             return $next($request);
-        } else {
-            abort(404);
+        }else{
+            abort(400);
         }
     }
 }

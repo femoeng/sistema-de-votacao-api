@@ -20,6 +20,9 @@ class CreateVisitantesTable extends Migration
             $table->string('contacto')->unique();
             $table->string('email',128);
             $table->enum('tipo_visitante',['externo','interno']);
+            $table->string('pin');
+            $table->boolean('votou')->default(false);
+
             
             $table->timestamps();
         }); 

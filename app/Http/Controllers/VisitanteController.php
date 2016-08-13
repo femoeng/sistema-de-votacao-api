@@ -22,17 +22,21 @@ class VisitanteController extends Controller
      */
     public function index()
     {
+ $visitantes = \App\Visitante::all();
+      /*  return $Visitante ;*/
         $visitante = $this->request->visitante;
-        $visitantes = $visitante->get();
+        //$visitantes = $visitante->get();
+        
         if (count($visitantes) > 0) {
-            $visitante_obj = [
+            return  [
                 'visitante' => $visitantes
             ];
-
-            return $visitante_obj;
+          
+  
         } else {
             abort(404);
-        }
+        
+      }
     }
 
     /**
@@ -67,6 +71,7 @@ class VisitanteController extends Controller
     public function show($id)
     {
         $Visitante = \App\Visitante::findOrFail($id);
+        return $Visitante;
     }
 
     /**

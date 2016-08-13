@@ -23,7 +23,6 @@ class CreateProvemTable extends Migration
             references('id')->
             on('projectos')->
             onDelete('cascade');
-            $table->timestamps();
         });
     }
 

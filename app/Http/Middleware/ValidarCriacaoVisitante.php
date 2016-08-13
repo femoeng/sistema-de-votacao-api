@@ -16,6 +16,7 @@ class ValidarCriacaoVisitante
     public function handle($request, Closure $next)
     {
         $data=$request->json()->all();
+
         $visitante_valido=true;
         $arrayErro=[];
         if(isset($data['nome'])) {
@@ -42,7 +43,7 @@ class ValidarCriacaoVisitante
         }
 
         if(isset($data['contacto'])){
-
+        
         }else{
             $visitante_valido=false;
             array_push($arrayErro,"O contacto eh obrigatorio"); 
