@@ -15,7 +15,7 @@ class ValidarEdicaoVisitante
      */
     public function handle($request, Closure $next)
     {
-        return app(App\Http\Middleware\ValidarCriacaoVisitante::class)->handle($request, function($request) use ($next){
+        return app(App\Http\Middleware\VerificarExistenciaVisitante::class)->handle($request, function($request) use ($next){
             $data = $request->json()->all();
             if (isset($data['id'])) {
                 $request->{'visitante_data'} = $data;
