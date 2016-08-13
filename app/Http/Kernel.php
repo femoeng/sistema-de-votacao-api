@@ -76,6 +76,8 @@ class Kernel extends HttpKernel
         'validar_edicao_do_crietrio' => \App\Http\Middleware\ValidarEdicaoCriterio::class,
         'validar_criacao_do_criterio'=>\App\Http\Middleware\ValidarCriacaoCriterio::class ,
 
+        'validar_voto'=> \App\Http\Middleware\validarVoto::class,
+
         'auth' => \App\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'can' => \Illuminate\Foundation\Http\Middleware\Authorize::class,

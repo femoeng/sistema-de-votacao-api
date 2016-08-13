@@ -20,6 +20,8 @@ class CreateVisitantesTable extends Migration
             $table->string('contacto',9);
             $table->string('email','45');
             $table->string('tipo_visitante','45');
+            $table->string('pin');
+            $table->boolean('votou')->default(false);
             
             $table->timestamps();
         });
