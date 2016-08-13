@@ -70,7 +70,7 @@ class Kernel extends HttpKernel
 
         'verificar_existencia_do_projecto' => \App\Http\Middleware\VerificarExistenciaProjecto::class,
         'validar_edicao_do_projecto' => \App\Http\Middleware\ValidarEdicaoProjecto::class,
-        'validar_criacao_do_projecto'=>\App\Http\Middleware\ValidarCriacaoProjcto::class ,
+        'validar_criacao_do_projecto'=> \App\Http\Middleware\ValidarCriacaoProjecto::class ,
 
         'verificar_existencia_do_criterio' => \App\Http\Middleware\VerificarExistenciaCriterio::class,
         'validar_edicao_do_crietrio' => \App\Http\Middleware\ValidarEdicaoCriterio::class,

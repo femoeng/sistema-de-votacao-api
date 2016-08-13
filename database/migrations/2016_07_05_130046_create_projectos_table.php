@@ -15,11 +15,12 @@ class CreateProjectosTable extends Migration
         Schema::create('projectos', function (Blueprint $table) {
             $table->increments('id');
             $table->string('titulo',100);
-            $table->string('areaAplic',120);
-            $table->string('descr',120);
-            $table->string('imagem',120);
-            $table->string('tutor',45);
+            $table->string('area_aplicacao',120);
+            $table->string('descricao',120)->nullable();
+            $table->string('imagem',120)->nullable();
+            $table->string('tutor',45)->nullable();
             $table->timestamps();
+            
         });
     }
 
