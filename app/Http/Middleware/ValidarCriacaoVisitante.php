@@ -35,14 +35,29 @@ class ValidarCriacaoVisitante
 
         }
 
-        if (isset($data['numero_documento'])){
-         
+        if (isset($data['numero_documento'])) {
+            $nr_visitantes = \App\Visitante
+                ::where('numero_documento', $data['numero_documento'])
+                ->count();
+
+            if ($nr_visitantes > 0) {
+                $visitante_valido = false;
+                array_push($arrayErro, "Um visitante com este documento ja existe.");
+            }
         } else { 
              $visitante_valido=false;
             array_push($arrayErro,"O numero de documento eh obrigatorio"); 
         }
 
         if(isset($data['contacto'])){
+            $nr_visitantes = \App\Visitante
+                ::where('contacto', $data['contacto'])
+                ->count();
+
+            if ($nr_visitantes > 0) {
+                $visitante_valido = false;
+                array_push($arrayErro, "Um visitante com este contacto ja existe.");
+            }
         
         }else{
             $visitante_valido=false;
@@ -52,6 +67,14 @@ class ValidarCriacaoVisitante
 
 
         if(isset($data['email'])){
+            $nr_visitantes = \App\Visitante
+                ::where('email', $data['email'])
+                ->count();
+
+            if ($nr_visitantes > 0) {
+                $visitante_valido = false;
+                array_push($arrayErro, "Um visitante com este email ja existe.");
+            }
 
         }
 
@@ -73,3 +96,4 @@ class ValidarCriacaoVisitante
        } 
     }
 }
+//validar numero, contacto e email ---- devem ser unicos 
