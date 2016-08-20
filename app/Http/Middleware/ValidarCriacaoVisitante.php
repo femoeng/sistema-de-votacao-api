@@ -28,7 +28,12 @@ class ValidarCriacaoVisitante
         }
 
         if(isset($data['tipo_documento'])){
+          if (in_array($data['tipo_documento'], ['BI', 'passaporte', 'DIRE'])) {
 
+          } else {
+            $visitante_valido = false;
+            array_push($arrayErro, sprintf("<<%s>> é um tipo de documento inválido", $data['tipo_documento']));
+          }
         } else {
            $visitante_valido = false;
            array_push($arrayErro,"O tipo de documento é obrigatorio");
@@ -52,14 +57,14 @@ class ValidarCriacaoVisitante
 
         }
 
-       if(isset($data['tipo_visitante'])){
+       if(isset($data['tipo_visitante'])) {
 
        } else {
           $visitante_valido = false;
           array_push($arrayErro,"O tipo visitante é obrigatorio");
        }
 
-       if($visitante_valido){
+       if ($visitante_valido) {
             $request->{"visitante_data"} = $data;
             return $next($request);
        } else {
