@@ -96,4 +96,4 @@ class ValidarCriacaoVisitante
        } 
     }
 }
-//validar numero, contacto e email ---- devem ser unicos 
+ 
