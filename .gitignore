@@ -4,3 +4,6 @@ Homestead.yaml
 Homestead.json
 .env
 /database/database.sqlite
+/vendor
+/.idea
+cls
