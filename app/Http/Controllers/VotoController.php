@@ -38,20 +38,9 @@ class VotoController extends Controller
      */
     public function store(Request $request)
     {
-        $voto_data = $request->voto_data;
-        $voto = new \App\Voto($voto_data);
-        $voto->save();
-        if(isset($request->criterios) && isset($request->projectos)) {
-
-            foreach ($request->criterios as $c) {
-                $criterio = App\Criterio::where('id',$c->id)->first();
-               //  $projecto = App\Projecto::where('id')->first();
-                if(isset($criterio) && isset($projecto)) {
-                    $voto->criterios()-save($criterio);
-                  //  $voto->projectos()-save($projecto);
-                }
-            }
-            return $voto;
+        $votos = $request->voto_data;
+        foreach($votos as $voto) {
+          $voto = \App\Voto::create($voto);
         }
     }
 
@@ -82,6 +71,6 @@ class VotoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    
-   
+
+
 }

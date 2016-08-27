@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class ValidarCriterio
+class ValidarCriacaoCriterio
 {
     /**
      * Handle an incoming request.
@@ -15,11 +15,13 @@ class ValidarCriterio
      */
        public function handle($request, Closure $next)
     {
-       $data=$request->json()->all();
-          if(isset($data['nome']) && isset($data['pesoJuri'])){
+       $data = $request->json()->all();
+       $erros = [];
+        if(isset($data['nome'])){
           return $next($request);
-        }else{
-            abort(400);
+        } else {
+          array_push($erros, 'Nome do critério não definido');
+          return response()->json($erros, 400);
         }
     }
 }

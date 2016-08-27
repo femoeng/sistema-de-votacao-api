@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Visitante extends Model
 {
-    protected $fillable = ['nome','tipoDoc','numero_Documento','contacto','email','tipo_visitante'];
+    protected $fillable = ['nome','tipo_documento','numero_documento','contacto','email','tipo_visitante', 'pin', 'codigo'];
 
     public function departamentos()
     {
@@ -16,9 +16,5 @@ class Visitante extends Model
      public function criterios()
     {
          return $this->belongsToMany('\App\Criterio','vota')->withPivot('projecto_id');
-
     }
-
 }
-
-

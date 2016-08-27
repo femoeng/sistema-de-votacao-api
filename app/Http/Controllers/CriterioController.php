@@ -8,8 +8,9 @@ use App\Http\Requests;
 
 class CriterioController extends Controller
 {
-    public function __construct(){
-        $this->middleware('validar_criterio',['only'=>['store','update']]);
+    public function __construct() {
+        $this->middleware('validar_criacao_do_criterio', ['only' => ['store']]);
+        $this->middleware('validar_edicao_do_criterio', ['only' => ['update']]);
     }
 
 

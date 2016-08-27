@@ -39,7 +39,7 @@
     //Routas para cursos
     Route::resource('departamentos.cursos','CursoController', $read_write);
 
-    
+
 
     //Routas para criterios
     Route::resource('criterios','CriterioController', $read_write);
@@ -61,11 +61,8 @@ Route::group(['middleware' => 'verificar_token:qualquer'], function() use($read_
   Route::delete('logout/{id}', 'SessaoController@destroy');
 });
 
- Route::resource('projectos','ProjectoController', $read_write);
- Route::resource('criterios','CriterioController', $read_write);
-  Route::resource('visitantes','VisitanteController', $read_write);
-  Route::resource('vota','VotoController',$read_write);
-
- 
-
-
+Route::resource('projectos','ProjectoController', $read_write);
+Route::resource('criterios','CriterioController', $read_write);
+Route::resource('visitantes','VisitanteController', $read_write);
+Route::resource('votos','VotoController',$read_write);
+Route::resource('sessao', 'VisitanteSessaoController', $read_write);

@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddVisitanteExternoAsDefault extends Migration
+class AddTokenToVisitante extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,7 @@ class AddVisitanteExternoAsDefault extends Migration
     public function up()
     {
         Schema::table('visitantes', function (Blueprint $table) {
-            $table->string('tipo_visitante')->default('interno')->change();
-
+          $table->string('codigo', 128)->unique()->nullable();
         });
     }
 
@@ -26,8 +25,7 @@ class AddVisitanteExternoAsDefault extends Migration
     public function down()
     {
         Schema::table('visitantes', function (Blueprint $table) {
-
-
+          $table->dropColumn('codigo');
         });
     }
 }

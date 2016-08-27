@@ -4,6 +4,8 @@ namespace App\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 use App\Http\Middleware\VerificarToken;
+use App\Http\Middleware\AutenticarVisitante;
+use App\Http\Middleware\VerificarCodigoVisitante;
 
 class Kernel extends HttpKernel
 {
@@ -76,7 +78,9 @@ class Kernel extends HttpKernel
         'validar_edicao_do_crietrio' => \App\Http\Middleware\ValidarEdicaoCriterio::class,
         'validar_criacao_do_criterio'=>\App\Http\Middleware\ValidarCriacaoCriterio::class ,
 
-        'validar_voto'=> \App\Http\Middleware\validarVoto::class,
+        'validar_voto'=> \App\Http\Middleware\ValidarVoto::class,
+        'verificar_credenciais_do_visitante' => \App\Http\Middleware\AutenticarVisitante::class,
+        'verificar_codigo_visitante' => \App\Http\Middleware\VerificarCodigoVisitante::class,
 
         'auth' => \App\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,

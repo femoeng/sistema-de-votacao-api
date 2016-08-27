@@ -15,15 +15,46 @@ class ValidarRegistoDeUtilizador
      */
     public function handle($request, Closure $next)
     {
-        if (isset($data['nome']) && isset($data['senha']) && isset($data['privilegio'])) {
+        $erros = [];
+        $utilizador = [];
+        $utilizador_valido = true;
+        
+        if (isset($data['nome'])) {
+
+        } else {
+          $utilizador_valido = $utilizador_valido && false;
+          $erros['nome'] = [
+            'O nome é obrigatório'
+          ];
+        }
+
+        if (isset($data['senha'])) {
+
+        } else {
+          $utilizador_valido = $utilizador_valido && false;
+          $erros['senha'] = [
+            'A senha é obrigatória'
+          ];
+        }
+
+        if (isset($data['privilegio'])) {
+
+        } else {
+          $utilizador_valido = $utilizador_valido && false;
+          $erros['privilegio'] = [
+            'O privilégio é obrigatório'
+          ];
+        }
+
+        if ($utilizador_valido) {
           $utilizador['nome'] = $data['nome'];
           $utilizador['senha'] = \Hash::make($data['senha']);
           $utilizador['privilegio'] = $data['privilegio'];
+
           $request->utilizador_data = $utilizador;
           return $next($request);
         } else {
-          abort(400);
+            return response()->json($erros, 400);
         }
-
     }
 }
