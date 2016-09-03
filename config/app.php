@@ -157,6 +157,7 @@ return [
         App\Providers\RouteServiceProvider::class,
 
        Cocur\Slugify\Bridge\Laravel\SlugifyServiceProvider::class,
+       Barryvdh\Cors\ServiceProvider::class,
 
     ],
 

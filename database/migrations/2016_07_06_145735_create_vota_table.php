@@ -16,15 +16,26 @@ class CreateVotaTable extends Migration
             $table->integer('projecto_id')->unsigned();
             $table->integer('visitante_id')->unsigned();
             $table->string('criterio_id');
+
             $table->foreign('projecto_id')
-            ->references('id')
-            ->on('projectos');
-             $table->foreign('visitante_id')
-            ->references('id')
-            ->on('visitantes');
-             $table->foreign('criterio_id')
-            ->references('id')
-            ->on('criterios');
+                  ->references('id')
+                  ->on('projectos')
+                  ->onDelete('cascade')
+                  ->onUpdate('cascade');
+
+            $table->foreign('visitante_id')
+                   ->references('id')
+                  ->on('visitantes')
+                  ->onDelete('cascade')
+                  ->onUpdate('cascade');
+
+            $table->foreign('criterio_id')
+                   ->references('id')
+                   ->on('criterios')
+                   ->onDelete('cascade')
+                   ->onUpdate('cascade');
+
+            $table->unique(['visitante_id', 'projecto_id', 'criterio_id']);
             $table->timestamps();
         });
     }

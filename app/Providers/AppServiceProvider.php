@@ -22,7 +22,7 @@ class AppServiceProvider extends ServiceProvider
       });
 
 
-      \App\Visitante::saving(function($visitante) {
+      \App\Visitante::creating(function($visitante) {
         $var = rand(0,9999);
 
         if ($var >= 0 && $var<10) {
