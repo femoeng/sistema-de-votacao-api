@@ -15,14 +15,20 @@ class VerificarExistenciaDoDepartamento
      */
     public function handle($request, Closure $next)
     {
-      $departamento_id = $request->route()->parameter('departamentos');
-      $departamento = \App\Departamento::findOrFail($departamento_id);
+      $id = $request->route()->parameter('departamentos');
+      $departamento = \App\Departamento::find($id);
 
       if (isset($departamento)) {
           $request->{'departamento'} = $departamento;
           return $next($request);
       } else {
-        abort(404);
+        $erros = [
+          'erros' => [
+              'Departamento não encontrado'
+          ]
+        ];
+        
+        return response($erros, 404);
       }
     }
 }
