@@ -9,8 +9,7 @@ use App\Http\Requests;
 class CursoController extends Controller
 {
     private $request;
-     public function __construct(Request $request) {
-        $this->request = $request;
+     public function __construct() {
         $this->middleware('verificar_existencia_do_departamento', ['only' => ['index', 'store']]);
         $this->middleware('validar_criacao_do_curso', ['only' => ['store']]);
         $this->middleware('verificar_existencia_do_curso', ['only' => ['show', 'destroy']]);
@@ -22,9 +21,9 @@ class CursoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-      $departamento = $this->request->departamento;
+      $departamento = $request->departamento;
       $cursos = $departamento->cursos()->get();
       if (count($cursos) > 0) {
         $curso_obj = [
@@ -43,10 +42,10 @@ class CursoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store()
+    public function store(Request $request)
     {
-        $departamento = $this->request->departamento;
-        $cursos_data = $this->request->curso_data;
+        $departamento = $request->departamento;
+        $cursos_data = $request->curso_data;
         $curso = $departamento->cursos()->create($cursos_data);
         return $curso;
     }
@@ -57,9 +56,9 @@ class CursoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show(Request $request)
     {
-      return $this->request->curso;
+      return $request->curso;
     }
 
 
@@ -70,10 +69,10 @@ class CursoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update()
+    public function update(Request $request)
     {
-      $data = $this->request->curso_data;
-      $curso = $this->request->curso;
+      $data = $request->curso_data;
+      $curso = $request->curso;
       $curso->fill($data);
       $curso->save();
 
@@ -86,9 +85,9 @@ class CursoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-      $curso = $this->request->curso;
+      $curso = $request->curso;
       $curso->delete();
       abort(204);
     }
