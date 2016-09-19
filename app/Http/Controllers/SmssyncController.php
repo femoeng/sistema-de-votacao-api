@@ -27,14 +27,114 @@ class SmssyncController extends Controller
 
             // Receber
             default:
-                $this->_receive();
+                $this->_receive($request);
                 break;
         }
     }
    //por implementar
-    private function _receive()
+    private function _receive(Request $request)
     {
+        $error = NULL;
+        // Set success to false as the default success status
 
+        $success = false;
+
+        /**
+         *  Get the phone number that sent the SMS.
+         */
+        if (isset($request['from']))
+        {
+            $from = $request['from'];
+        }
+        else
+        {
+            $error = 'The from variable was not set';
+        }
+        /**
+         * Get the SMS aka the message sent.
+         */
+        if (isset($$request['message']))
+        {
+            $message = $$request['message'];
+        }
+        else
+        {
+            $error = 'The message variable was not set';
+        }
+        /**
+         * Get the secret key set on SMSsync side
+         * for matching on the server side.
+         */
+        if (isset($$request['secret']))
+        {
+            $secret = $$request['secret'];
+        }
+        /**
+         * Get the timestamp of the SMS
+         */
+        if(isset($$request['sent_timestamp']))
+        {
+            $sent_timestamp = $$request['sent_timestamp'];
+        }
+        /**
+         * Get the phone number of the device SMSsync is
+         * installed on.
+         */
+        if (isset($$request['sent_to']))
+        {
+            $sent_to = $$request['sent_to'];
+        }
+        /**
+         * Get the unique message id
+         */
+        if (isset($$request['message_id']))
+        {
+            $message_id = $$request['message_id'];
+        }
+        /**
+         * Get device ID
+         */
+        if (isset($$request['device_id']))
+        {
+            $device_id = $$request['device_id'];
+        }
+        /**
+         * Now we have retrieved the data sent over by SMSsync
+         * via HTTP. Next thing to do is to do something with
+         * the data. Either echo it or write it to a file or even
+         * store it in a database. This is entirely up to you.
+         * After, return a JSON string back to SMSsync to know
+         * if the web service received the message successfully or not.
+         *
+
+         */
+        if ((strlen($from) > 0) AND (strlen($message) > 0) AND
+            (strlen($sent_timestamp) > 0 )
+            AND (strlen($message_id) > 0))
+        {
+            /* The screte key set here is 123456. Make sure you enter
+             * that on SMSsync.
+             */
+            if ( ( $secret == \App\smssync_settings::find(1)))
+            {
+                $success = true;
+            } else
+            {
+                $error = "The secret value sent from the device does not match the one on the server";
+            }
+            //gravacao da mensagem enviada usando txt
+            $message_data=new \App\smssync_message();
+            $message_data=[
+                'from' => $from,
+                'message'  => $message,
+                'sent_to'  => $sent_to,
+                'device_id'  => $device_id,
+                'sent_timestamp'  => $sent_timestamp,
+            ];
+            $message_data->save();
+
+
+    }
     }
 
     private function _send()

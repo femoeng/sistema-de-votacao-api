@@ -16,7 +16,7 @@ class Utilizadores extends Migration
             $table->increments('id');
             $table->string('nome');
             $table->string('senha');
-            $table->enum('privilegio',['admin','superadmin']);
+            //$table->enum('privilegio',['admin','superadmin']);
             $table->timestamps();
         });
     }

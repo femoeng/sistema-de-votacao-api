@@ -15,11 +15,11 @@ class CreateSmssyncMessagesTable extends Migration
 
         Schema::create('smssync_messages', function (Blueprint $table) {
             $table->increments('id')->primary();
-            $table->string('smssync_to');
-            $table->string('smssync_from');
-            $table->string('smssync_message_text');
+            $table->string('from');
+            $table->string('sent_to');
+            $table->string('device_id');
             $table->tinyInteger("smssync_sent");
-            $table->dateTime("smssync_sent_date");
+            $table->dateTime("timestamp");
             $table->rememberToken();
             $table->timestamps();
 
