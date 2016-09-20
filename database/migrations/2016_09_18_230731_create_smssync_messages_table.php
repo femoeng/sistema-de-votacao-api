@@ -14,7 +14,7 @@ class CreateSmssyncMessagesTable extends Migration
     {
 
         Schema::create('smssync_messages', function (Blueprint $table) {
-            $table->increments('id')->primary();
+            $table->increments('id');
             $table->string('from');
             $table->string('sent_to');
             $table->string('device_id');
