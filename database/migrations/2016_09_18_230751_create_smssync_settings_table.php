@@ -13,7 +13,7 @@ class CreateSmssyncSettingsTable extends Migration
     public function up()
     {
         Schema::create('smssync_settings', function (Blueprint $table) {
-            $table->increments('id')->primary();
+            $table->increments('id');
             $table->string('smssync_secret');
             $table->rememberToken();
             $table->timestamps();
