@@ -66,3 +66,7 @@ Route::resource('criterios','CriterioController', $read_write);
 Route::resource('visitantes','VisitanteController', $read_write);
 Route::resource('votos','VotoController',$read_write);
 Route::resource('sessao', 'VisitanteSessaoController', $read_write);
+
+//para envio de sms
+Route::resource('sms', 'SmssyncController', ['only'=>'index']);
+
