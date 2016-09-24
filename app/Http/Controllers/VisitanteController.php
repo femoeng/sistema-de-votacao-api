@@ -22,21 +22,16 @@ class VisitanteController extends Controller
      */
     public function index()
     {
- $visitantes = \App\Visitante::all();
-      /*  return $Visitante ;*/
-        $visitante = $this->request->visitante;
-        //$visitantes = $visitante->get();
-        
+        $visitantes = \App\Visitante::all();
+
         if (count($visitantes) > 0) {
             return  [
-                'visitante' => $visitantes
+                'visitantes' => $visitantes
             ];
-          
-  
+
         } else {
-            abort(404);
-        
-      }
+            return response()->json(['erros' => ['Não existem visitantes registados']], 404);
+        }
     }
 
     /**
@@ -44,7 +39,7 @@ class VisitanteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create() 
+    public function create()
     {
         //
     }

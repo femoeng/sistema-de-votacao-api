@@ -22,8 +22,15 @@ class ProjectoController extends Controller
      */
     public function index()
     {
-        $projectos= \App\Projecto::all();
-        return $projectos;
+        $projectos = \App\Projecto::all();
+        if (count($projectos) > 0) {
+          return [
+            'projectos' => $projectos
+          ];
+        } else {
+          return response()->json(['erros' => ['Não existem projectos registados']]);
+        }
+
     }
 
     /**
@@ -57,10 +64,10 @@ class ProjectoController extends Controller
                     $projecto->cursos()->save($curso);
 
                 }
-                
+
             }
-            
-        
+
+
         return $projecto;
 
     }
@@ -112,7 +119,7 @@ class ProjectoController extends Controller
      */
     public function destroy($id)
     {
-        \App\Projecto::destroy($id); 
+        \App\Projecto::destroy($id);
     }
 
 }

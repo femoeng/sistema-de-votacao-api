@@ -18,7 +18,8 @@ class ValidarRegistoDeUtilizador
         $erros = [];
         $utilizador = [];
         $utilizador_valido = true;
-        
+        $data = $request->json()->all();
+
         if (isset($data['nome'])) {
 
         } else {

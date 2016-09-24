@@ -27,6 +27,7 @@ class ValidarCurso
         }
 
         if ($curso_valido) {
+          $request->{'curso'} = $data;
           return $next($request);
         } else {
           return response()->json($erros, 400);
