@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\smssync_message;
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 
 class SmssyncController extends Controller
@@ -51,13 +49,10 @@ class SmssyncController extends Controller
     {
         $mensagens = \App\SmssyncMessage::all();
 
-        $mensagem = $this->request->visitante;
-
         if (count($mensagens) > 0) {
             return  [
                 'mensagem' => $mensagens
             ];
-
 
         } else {
             abort(404);
@@ -65,7 +60,13 @@ class SmssyncController extends Controller
         }
     }
 
-    
+    public function destroy(Request $request)
+    {
+        $mensagem = $request->mensagem;
+        $mensagem->delete();
+    }
+
+
     private function _receive(Request $request)
     {
         $error = NULL;

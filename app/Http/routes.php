@@ -68,5 +68,6 @@ Route::resource('votos','VotoController',$read_write);
 Route::resource('sessao', 'VisitanteSessaoController', $read_write);
 
 //para envio de sms
-Route::resource('sms', 'SmssyncController', ['only'=>'task']);
+Route::resource('sms', 'SmssyncController', $read_write);
 
+Route::get('task', 'SmssyncController@task');
