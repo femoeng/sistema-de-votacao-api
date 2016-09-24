@@ -13,12 +13,12 @@ class SmssyncController extends Controller
     public function __construct(Request $request)
     {
         $this->request = $request;
-        $this->middleware('validar_url', ['only' => ['index']]);
-        $this->middleware('validar_conteudo', ['only' => ['index']]);
+        $this->middleware('validar_url', ['only' => ['task']]);
+        $this->middleware('validar_conteudo', ['only' => ['task']]);
 
     }
 
-    function index()
+    function task()
     {
         $task = $this->request['task'];
 
@@ -30,11 +30,42 @@ class SmssyncController extends Controller
 
             // Receber
             default:
-                $this->_receive($request);
+                $this->_receive($this->request);
                 break;
         }
     }
-   //por implementar
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        $Message = \App\SmssyncMessage::findOrFail($id);
+        return $Message;
+    }
+
+    public function index()
+    {
+        $mensagens = \App\SmssyncMessage::all();
+
+        $mensagem = $this->request->visitante;
+
+        if (count($mensagens) > 0) {
+            return  [
+                'mensagem' => $mensagens
+            ];
+
+
+        } else {
+            abort(404);
+
+        }
+    }
+
+    
     private function _receive(Request $request)
     {
         $error = NULL;

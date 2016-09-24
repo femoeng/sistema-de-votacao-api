@@ -25,8 +25,7 @@ class VisitanteController extends Controller
  $visitantes = \App\Visitante::all();
       /*  return $Visitante ;*/
         $visitante = $this->request->visitante;
-        //$visitantes = $visitante->get();
-        
+
         if (count($visitantes) > 0) {
             return  [
                 'visitante' => $visitantes
