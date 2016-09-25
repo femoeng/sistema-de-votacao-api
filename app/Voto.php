@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Voto extends Model
 {
     protected $table = "vota";
+    protected $primaryKey = null;
+    public $incrementing = false;
     protected $fillable = ['visitante_id', 'criterio_id', 'projecto_id'];
 
     public function visitante() {
