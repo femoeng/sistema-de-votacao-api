@@ -15,9 +15,8 @@ class VerificarExistenciaDoDepartamento
      */
     public function handle($request, Closure $next)
     {
-      $id = $request->route()->parameter('departamentos');
-      return ['id' => $id];
-      $departamento = \App\Departamento::find($id);
+      $departamento_id = $request->route()->parameter('departamentos');
+      $departamento = \App\Departamento::fi($departamento_id);
 
       if (isset($departamento)) {
           $request->{'departamento'} = $departamento;
