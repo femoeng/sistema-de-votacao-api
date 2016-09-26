@@ -15,16 +15,16 @@ class ValidarEdicaoVisitante
      */
     public function handle($request, Closure $next)
     {
-        return app(App\Http\Middleware\VerificarExistenciaVisitante::class)->handle($request, function($request) use ($next){
+        return app(\App\Http\Middleware\VerificarExistenciaVisitante::class)->handle($request, function($request) use ($next){
             $data = $request->json()->all();
-            $id = $request->route()->parameter('visitantes');
-            $visitante = \App\Visitante::find($id);
+            $visitante_id = $request->route()->parameter('visitantes');
+            $visitante = \App\Visitante::find($visitante_id);
             if(isset($visitante)) {
-             
+
                  if(isset($data['nome'])){
 
-
                  }
+
                 if(isset($data['tipo_documento'])){
 
                  }
@@ -33,7 +33,7 @@ class ValidarEdicaoVisitante
 
                  }
                  if(isset($data['contacto'])){
-
+                   
                  }
                  if(isset($data['email'])){
 
@@ -41,10 +41,10 @@ class ValidarEdicaoVisitante
                  if(isset($data['tipo_visitante'])){
 
                  }
-                $request->{'visitante_data'} = $data; 
+                $request->{'visitante_data'} = $data;
                 return $next($request);
 
-            
+
             } else {
                 abort(400);
             }
@@ -52,5 +52,3 @@ class ValidarEdicaoVisitante
 
     }
 }
-
- 
