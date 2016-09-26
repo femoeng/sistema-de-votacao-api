@@ -54,7 +54,7 @@ class DepartamentoController extends Controller
      */
     public function show(Request $request)
     {
-        $departamento = $request->departamento;
+        $departamento = \App\Departamento::find($id);
         return $departamento;
     }
 
@@ -66,10 +66,10 @@ class DepartamentoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
-        $departamento = $request->departamento;
         $data = $request->departamento_data;
+        $departamento = \App\Departamento::find($id);
         $departamento->fill($data);
         $departamento->save();
 
@@ -84,7 +84,7 @@ class DepartamentoController extends Controller
      */
     public function destroy(Request $request)
     {
-      $departamento = $request->departamento;
+      $departamento = \App\Departamento::find($id);
       $departamento->delete();
     }
 }

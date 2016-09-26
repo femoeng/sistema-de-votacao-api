@@ -21,9 +21,9 @@ class CursoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(Request $request, $departamento_id)
     {
-      $departamento = $request->departamento;
+      $departamento = \App\Departamento::find($departamento_id);
       $cursos = $departamento->cursos()->get();
       if (count($cursos) > 0) {
         $curso_obj = [
@@ -44,7 +44,7 @@ class CursoController extends Controller
      */
     public function store(Request $request)
     {
-        $departamento = $request->departamento;
+        $departamento = \App\Departamento::find($departamento_id);
         $cursos_data = $request->curso_data;
         $curso = $departamento->cursos()->create($cursos_data);
         return $curso;
