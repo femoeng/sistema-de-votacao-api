@@ -147,6 +147,6 @@ class VotoController extends Controller
         $visitante->votou = true;
         $visitante->save();
 
-        return response()->json(['mensagem' => ['Voto realizado com sucesso']], 201);
+        return response()->json(['mensagem' => 'Voto efectuado com sucesso, obrigado pela sua contribuição'], 201);
     }
 }
