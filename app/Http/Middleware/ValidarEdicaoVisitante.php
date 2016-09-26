@@ -33,7 +33,7 @@ class ValidarEdicaoVisitante
 
                  }
                  if(isset($data['contacto'])){
-                   
+
                  }
                  if(isset($data['email'])){
 
@@ -42,6 +42,7 @@ class ValidarEdicaoVisitante
 
                  }
                 $request->{'visitante_data'} = $data;
+                $request->{'visitante'} = $visitante;
                 return $next($request);
 
 

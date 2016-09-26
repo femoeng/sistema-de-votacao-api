@@ -89,9 +89,11 @@ class VisitanteController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $visitante = \App\Visitante::findOrFail($id);
-        $visitante = $request->json();
+        $data = $request->visitante_data;
+        $visitante = $request->visitante;
+        $visitante->fill($data);
         $visitante->save();
+        return response(['mensagem' => ['Actualização realizada com sucesso']], 200);
     }
 
     /**
