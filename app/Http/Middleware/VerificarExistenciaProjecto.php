@@ -15,13 +15,13 @@ class VerificarExistenciaProjecto
      */
     public function handle($request, Closure $next)
     {
-        $projecto_id = $request->route()->parameter('projecto');
-        $projecto = \App\Projecto::findOrFail($projecto_id);
+        $projecto_id = $request->route()->parameter('projectos');
+        $projecto = \App\Projecto::find($projecto_id);
         if (isset($projecto)) {
             $request->{'projecto'} = $projecto;
             return $next($request);
         } else {
-            abort(404);
+            return response()->json(['erros' => ['Projecto não encontrado']], 404);
         }
     }
 }
