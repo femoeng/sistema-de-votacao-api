@@ -72,24 +72,24 @@ class VotoMensagemController extends Controller
   }
 
   public function index(Request $request) {
-    return [
-      'payload' => [
-        'task' => 'send',
-        'secret' => 'femoeng',
-        'messages' => [
-          [
-            'to' => '820046201',
-            'message' => 'O teu pin é: 0978',
-            'uuid' => '042bf515-eq6b-f424-c4pz'
-          ],
-          [
-            'to' => '820046201',
-            'message' => 'O teu pin é: 0978',
-            'uuid' => '042bf515-eq6b-f424-c4p6'
-          ]
-
-        ]
-      ]
-    ];
+    $filters = $request->input();
+    // return [
+    //   'payload' => [
+    //     'task' => 'send',
+    //     'secret' => 'femoeng',
+    //     'messages' => [
+    //       [
+    //         'to' => '820046201',
+    //         'message' => 'O teu pin é: 0978',
+    //         'uuid' => '042bf515-eq6b-f424-c4pz'
+    //       ],
+    //       [
+    //         'to' => '820046201',
+    //         'message' => 'O teu pin é: 0970',
+    //         'uuid' => '042bf515-eq6b-f424-c4p6'
+    //       ]
+    //     ]
+    //   ]
+    // ];
   }
 }
