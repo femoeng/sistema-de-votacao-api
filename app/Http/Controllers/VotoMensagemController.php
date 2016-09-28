@@ -81,7 +81,13 @@ class VotoMensagemController extends Controller
             'to' => '820046201',
             'message' => 'O teu pin é: 0978',
             'uuid' => '042bf515-eq6b-f424-c4pz'
+          ],
+          [
+            'to' => '820046201',
+            'message' => 'O teu pin é: 0978',
+            'uuid' => '042bf515-eq6b-f424-c4p6'
           ]
+
         ]
       ]
     ];
