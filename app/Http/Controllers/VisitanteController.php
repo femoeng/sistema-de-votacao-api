@@ -20,19 +20,18 @@ class VisitanteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        $visitantes = \App\Visitante::all();
+public function index()
+{
+  $visitantes = \App\Visitante::all();
+  if (count($visitantes) > 0) {
+    return  [
+        'visitantes' => $visitantes
+    ];
 
-        if (count($visitantes) > 0) {
-            return  [
-                'visitantes' => $visitantes
-            ];
-
-        } else {
-            return response()->json(['erros' => ['Não existem visitantes registados']], 404);
-        }
-    }
+  } else {
+    return response()->json(['erros' => ['Não existem visitantes registados']], 404);
+  }
+}
 
     /**
      * Show the form for creating a new resource.

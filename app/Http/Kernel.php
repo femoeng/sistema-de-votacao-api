@@ -82,6 +82,8 @@ class Kernel extends HttpKernel
         'validar_voto'=> \App\Http\Middleware\ValidarVoto::class,
         'verificar_credenciais_do_visitante' => \App\Http\Middleware\AutenticarVisitante::class,
         'verificar_codigo_visitante' => \App\Http\Middleware\VerificarCodigoVisitante::class,
+        "validar_url"=>\App\Http\Middleware\ValidarMensagem::class,
+         "validar_conteudo"=>\App\Http\Middleware\ValidarConteudoDaMensagem::class,
 
         'auth' => \App\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,

@@ -17,7 +17,7 @@ class CreateSmssyncMessagesTable extends Migration
             $table->increments('id');
             $table->string('from');
             $table->string('sent_to');
-            $table->string('device_id');
+            $table->string("message");
             $table->tinyInteger("smssync_sent");
             $table->dateTime("timestamp");
             $table->rememberToken();
