@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSmssyncMessagesTable extends Migration
+class CreateMessagensTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class CreateSmssyncMessagesTable extends Migration
     public function up()
     {
 
-        Schema::create('smssync_messages', function (Blueprint $table) {
+        Schema::create('mensagens', function (Blueprint $table) {
             $table->string('id')->primary();
-            $table->string('send_to');
-            $table->string("message");
-            $table->rememberToken();
+            $table->string('mensagem');
+            $table->string("contacto");
             $table->timestamps();
-
         });
 
     }
