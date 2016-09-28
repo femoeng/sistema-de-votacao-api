@@ -70,4 +70,20 @@ class VotoMensagemController extends Controller
       return ['formato de entrada errada'];
     }
   }
+
+  public function index(Request $request) {
+    return [
+      'payload' => [
+        'task' => 'send',
+        'secret' => 'femoeng',
+        'messages' => [
+          [
+            'to' => '820046201',
+            'message' => 'O teu pin é: 0978',
+            'uuid' => '042bf515-eq6b-f424-c4pz'
+          ]
+        ]
+      ]
+    ];
+  }
 }
