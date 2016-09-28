@@ -11,8 +11,8 @@ class SmssyncController extends Controller
     public function __construct(Request $request)
     {
         $this->request = $request;
-        $this->middleware('validar_url', ['only' => ['task']]);
-        $this->middleware('validar_conteudo', ['only' => ['task']]);
+        //$this->middleware('validar_url', ['only' => ['task']]);
+        //$this->middleware('validar_conteudo', ['only' => ['task']]);
 
     }
 
@@ -41,13 +41,13 @@ class SmssyncController extends Controller
      */
     public function show($id)
     {
-        $Message = \App\SmssyncMessage::findOrFail($id);
+        $Message = \App\Mensagem::findOrFail($id);
         return $Message;
     }
 
     public function index()
     {
-        $mensagens = \App\SmssyncMessage::all();
+        $mensagens = \App\Mensagem::all();
 
         if (count($mensagens) > 0) {
             return  [

@@ -10,7 +10,8 @@
         "cocur/slugify": "^2.2",
         "doctrine/dbal": "^2.5",
         "barryvdh/laravel-cors": "^0.8.2",
-        "oefenweb/statistics": "^1.1"
+        "oefenweb/statistics": "^1.1",
+        "ramsey/uuid": "^3.5"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
