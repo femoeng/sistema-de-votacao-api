@@ -11,8 +11,8 @@ class SmssyncController extends Controller
     public function __construct(Request $request)
     {
         $this->request = $request;
-        $this->middleware('validar_url', ['only' => ['task']]);
-        $this->middleware('validar_conteudo', ['only' => ['task']]);
+        //$this->middleware('validar_url', ['only' => ['task']]);
+        //$this->middleware('validar_conteudo', ['only' => ['task']]);
 
     }
 
