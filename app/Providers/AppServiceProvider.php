@@ -33,7 +33,7 @@ class AppServiceProvider extends ServiceProvider
         } else if($var >= 100 && $var<1000) {
          $var = "0". $var;
         } else {
-          
+
         }
 
         $visitante->codigo = str_random(32);
@@ -41,14 +41,14 @@ class AppServiceProvider extends ServiceProvider
 
           $contacto = $visitante->contacto;
           $id=Uuid::uuid4();
-         
+
           $sms_data=[
             "id"=>$id->toString(),
-            "mensagem"=>"O seu pin e:"+$pin,
+            "mensagem"=>"O seu pin e:"+$var,
             "contacto"=>$contacto
           ];
            $sms_data=\App\Mensagem::create($sms_data);
-     
+
       });
     }
     /**
