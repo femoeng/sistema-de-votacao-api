@@ -17,4 +17,6 @@ class Visitante extends Model
     {
          return $this->belongsToMany('\App\Criterio','vota')->withPivot('projecto_id');
     }
+
+    
 }

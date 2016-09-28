@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class SmssyncMessage extends Model
 {
 
-    protected $fillable = ["message","send_to"];
+    protected $fillable = ['id',"mensagem","send_to"];
+
 
 }

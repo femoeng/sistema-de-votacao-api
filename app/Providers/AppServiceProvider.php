@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Slugify;
+use Ramsey\Uuid\Uuid;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -32,11 +33,22 @@ class AppServiceProvider extends ServiceProvider
         } else if($var >= 100 && $var<1000) {
          $var = "0". $var;
         } else {
-
+          
         }
 
         $visitante->codigo = str_random(32);
         $visitante->pin = $var;
+
+          $contacto = $visitante->contacto;
+          $id=Uuid::uuid4();
+         
+          $sms_data=[
+            "id"=>$id->toString(),
+            "mensagem"=>"O seu pin e:"+$pin,
+            "contacto"=>$contacto
+          ];
+           $sms_data=\App\Mensagem::create($sms_data);
+     
       });
     }
     /**
