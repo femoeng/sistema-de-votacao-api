@@ -44,7 +44,7 @@ class AppServiceProvider extends ServiceProvider
 
           $sms_data=[
             "id"=>$id->toString(),
-            "mensagem"=>"O seu pin e:"+$var,
+            "mensagem"=>"O seu pin e: "+$var,
             "contacto"=>$contacto
           ];
            $sms_data=\App\Mensagem::create($sms_data);
