@@ -64,12 +64,14 @@ Route::group(['middleware' => 'verificar_token:qualquer'], function() use($read_
 Route::resource('projectos','ProjectoController', $read_write);
 Route::resource('criterios','CriterioController', $read_write);
 Route::resource('visitantes','VisitanteController', $read_write);
-Route::resource('votos','VotoController',$read_write);
-Route::resource('sessao', 'VisitanteSessaoController', $read_write);
+Route::resource('votos','VotoController',[
+    'only' => ['index', 'store']
+]);
+Route::resource('sessao', 'VisitanteSessaoController',['only' => ['store']]);
 
 //para envio de sms
-Route::resource('sms', 'SmssyncController', ['only'=>'index']);
+/*Route::resource('sms', 'SmssyncController', ['only'=>'index']);
 Route::post('sms-voto', 'VotoMensagemController@store');
 Route::get('sms-voto', 'VotoMensagemController@index');
 Route::resource('sms', 'SmssyncController', $read_write);
-Route::get('task', 'SmssyncController@task');
+Route::get('task', 'SmssyncController@task');*/

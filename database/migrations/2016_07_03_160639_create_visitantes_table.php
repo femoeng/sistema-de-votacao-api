@@ -25,7 +25,6 @@ class CreateVisitantesTable extends Migration
             $table->string('pin');
             $table->boolean('votou')->default(false);
 
-
             $table->timestamps();
         });
     }

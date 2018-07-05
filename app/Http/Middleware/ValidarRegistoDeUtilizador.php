@@ -49,7 +49,7 @@ class ValidarRegistoDeUtilizador
           $request->utilizador_data = $utilizador;
           return $next($request);
         } else {
-          return response()->json(['erros' => $erros], 400);
+          return response()->json(['erros' => $data], 400);
         }
       } else {
         return response()->json(['erros' => ['Já existe um administrador registado']], 403);
